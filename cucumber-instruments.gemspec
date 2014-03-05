@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Cucumber::Instruments::VERSION
   spec.authors       = ["Ryan Marsh"]
   spec.email         = ["ryan.marsh@mac.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Cucumber for iOS UIAutomation testing}
+  spec.summary       = %q{UIA-Cucumber is the easiest way to do style Cucumber testing of iOS apps through the power of Instruments and UIAutomation.}
+  spec.homepage      = "https://github.com/cucumber-instruments/cucumber-instruments"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -20,4 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "cucumber"
+  spec.add_development_dependency "aruba"
 end

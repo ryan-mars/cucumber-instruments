@@ -18,7 +18,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Generate a basic features directory
+
+    $ cucumber-instruments generate
+
+Update the path to your app bundle like so:
+
+    # features/support/env.rb
+    APP_BUNDLE = ~/path/to/your.app
+
+Test drive your app
+
+    $ cucumber
 
 ## Contributing
 
