@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
-require 'cucumber/instruments'
+require 'cucumber/instruments/cli'
 Cucumber::Instruments::CLI.start
 
