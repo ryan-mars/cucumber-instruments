@@ -1,7 +1,7 @@
 Feature: No regrets
 	So that I dont regret choosing cucumber-instruments 
 	As an iOS developer
-	I want cucumber-instruments to work with all standard UI elements
+	I want cucumber-instruments to work with all standard iOS UI elements
 
 	Background: 
 		Given I have an iOS app with all standard UI elements
@@ -21,4 +21,3 @@ Feature: No regrets
 		
 
 	Scenario: Manipulate a navigation bar 
-		

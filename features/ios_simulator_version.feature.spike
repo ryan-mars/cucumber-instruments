@@ -1,0 +1,75 @@
+Feature: iOS version in the simulator
+	So that I can easily test my iOS app in the relevant versions of iOS
+	As an iOS developer
+	I want to be able to specify the iOS simulator version for each feature
+
+	Scenario: A single iOS version tag
+		Given I have installed cucumber-instruments
+		And cucumber-instruments is configured to run my app
+		And I have a feature tagged "@iphonesimulator6.1"
+		When I run the feature
+		Then I should see that cucumber-instruments launches the feature in the iPhone Simulator with iOS 6.1
+
+	Scenario: Multiple iOS version tags 
+		Given I have installed cucumber-instruments
+		And cucumber-instruments is configured to run my app
+		And I have a feature tagged "@ios6.1"
+		And also tagged "@ios7.0"
+		When I run the feature
+		Then I should see that cucumber-instruments launches the feature in the iPhone Simulator with iOS 6.1
+		And I should see that cucumber-instruments launches the feature in the iPhone Simulator with iOS 7.1
+
+	@iPhone
+	@iPhone_Retina_3.5in
+	@iPhone_Retina_4in
+	@iPhone_Retina_4in_64
+	@iPhone_Each
+
+	@iPad
+	@iPad_Retina
+	@iPad_Retina_64
+	@iPad_Each
+
+iPhone - Simulator - iOS 6.1
+iPhone - Simulator - iOS 7.0
+iPhone - Simulator - iOS 7.1
+iPhone Retina (3.5-inch) - Simulator - iOS 6.1
+iPhone Retina (3.5-inch) - Simulator - iOS 7.0
+iPhone Retina (3.5-inch) - Simulator - iOS 7.1
+iPhone Retina (4-inch) - Simulator - iOS 6.1
+iPhone Retina (4-inch) - Simulator - iOS 7.0
+iPhone Retina (4-inch) - Simulator - iOS 7.1
+iPhone Retina (4-inch 64-bit) - Simulator - iOS 6.1
+iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.0
+iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1
+iPad - Simulator - iOS 6.1
+iPad - Simulator - iOS 7.0
+iPad - Simulator - iOS 7.1
+iPad Retina - Simulator - iOS 6.1
+iPad Retina - Simulator - iOS 7.0
+iPad Retina - Simulator - iOS 7.1
+iPad Retina (64-bit) - Simulator - iOS 6.1
+iPad Retina (64-bit) - Simulator - iOS 7.0
+iPad Retina (64-bit) - Simulator - iOS 7.1
+
+@iPhone_Simulator_iOS_6.1
+@iPhone_Simulator_iOS_7.0
+@iPhone_Simulator_iOS_7.1
+@iPhone_Retina_3.5-inch_Simulator_iOS_6.1
+@iPhone_Retina_3.5-inch_Simulator_iOS_7.0
+@iPhone_Retina_3.5-inch_Simulator_iOS_7.1
+@iPhone_Retina_4-inch_Simulator_iOS_6.1
+@iPhone_Retina_4-inch_Simulator_iOS_7.0
+@iPhone_Retina_4-inch_Simulator_iOS_7.1
+@iPhone_Retina_4-inch_64-bit_Simulator_iOS_6.1
+@iPhone_Retina_4-inch_64-bit_Simulator_iOS_7.0
+@iPhone_Retina_4-inch_64-bit_Simulator_iOS_7.1
+@iPad_Simulator_iOS_6.1
+@iPad_Simulator_iOS_7.0
+@iPad_Simulator_iOS_7.1
+@iPad_Retina_Simulator_iOS_6.1
+@iPad_Retina_Simulator_iOS_7.0
+@iPad_Retina_Simulator_iOS_7.1
+@iPad_Retina_64-bit_Simulator_iOS_6.1
+@iPad_Retina_64-bit_Simulator_iOS_7.0
+@iPad_Retina_64-bit_Simulator_iOS_7.1
