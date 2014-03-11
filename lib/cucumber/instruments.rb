@@ -1,4 +1,5 @@
-require "cucumber/instruments/version"
+require 'cucumber/instruments/version'
+require 'cucumber/instruments/cucumber'
 
 module Cucumber
   module Instruments
