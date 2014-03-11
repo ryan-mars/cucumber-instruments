@@ -14,11 +14,26 @@ Feature: Test drive an iOS app
       """
     And I write to "features/step_definitions/right_nav_bar_button_steps.rb" with:
     	"""
+    	class UIATarget
+    		def self.localTarget
+    			return UIATarget.new
+    		end 
+
+    		def frontMostApp
+    			return UIApplication.new
+    		end 
+    	end
+
+    	class UIApplication
+    		def navigationBar
+    		end
+    	end 
+
     	When /^I touch the navigation bar button on the right$/ do 
-    		UIATarget.localTarget.fontMostApp.navigationBar.rightButton.tap 
+    		UIATarget.localTarget.frontMostApp.navigationBar.rightButton.tap
     	end 
     	"""
-		
+
 	Scenario: Red
 		Given my app does not have a right button on the navigation bar
 		When I run `bundle exec cucumber`
