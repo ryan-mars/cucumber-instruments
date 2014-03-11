@@ -1,0 +1,1 @@
+require 'cucumber/instruments/uiautomation/uiatarget'
