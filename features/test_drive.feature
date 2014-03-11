@@ -30,7 +30,8 @@ Feature: Test drive an iOS app
     	"""
     And I write to "features/support/env.rb" with:
     	"""
-    	require 'cucumber/instruments/uiautomation'
+    	require 'cucumber/instruments'
+    	require 'uiautomation'
     	"""
 
 	Scenario: Red
