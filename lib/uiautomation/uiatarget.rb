@@ -1,42 +1,33 @@
-class UIATarget
+class UIATarget 
 	def self.localTarget
 		return UIATarget.new
 	end 
 
 	def frontMostApp
 		return UIAApplication.new
-	end 
+	end
 end
 
 class UIAApplication
-	def navigationBar
-		return UIANavigationBar.new
-	end
-
-	def mainWindow 
-		return UIAWindow.new
+	def mainWindow
+		return UIAWindow.new 
 	end 
 end 
 
 class UIAWindow 
 	def tableViews
-		return [UIATableView.new]
-	end
+		array = UIAElementArray.new
+		array << UIATableView.new 
+		return array
+	end 
+end 
+
+class UIAElementArray < Array 
+
 end 
 
 class UIATableView
 	def cells
-		return []
-	end 
-end
-
-class UIANavigationBar
-	def rightButton
-		return UIAButton.new 
-	end 
-end 
-
-class UIAButton
-	def tap
+		return UIAElementArray.new
 	end 
 end 
