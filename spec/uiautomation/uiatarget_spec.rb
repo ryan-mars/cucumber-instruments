@@ -16,6 +16,11 @@ describe "UIAApplication" do
 	it "#mainWindow returns an instance of UIAWindow" do
 		expect(UIAApplication.new.mainWindow.class).to eq(UIAWindow)
 	end
+
+	it "#navigationBar returns an instance of UIANavigationBar" do
+		app = UIATarget.localTarget.frontMostApp
+		expect(app.navigationBar.class).to eq(UIANavigationBar)
+	end
 end
 
 describe "UIAWindow" do 
@@ -33,8 +38,18 @@ describe "UIATableView" do
 		tableview = UIATarget.localTarget.frontMostApp.mainWindow.tableViews[0]
 		expect(tableview.cells.class).to eq(UIAElementArray)
 	end
-
-	it "#cells returns a UIAElementArray of UIATableCells" do 
-		pending 
-	end 
 end 
+
+describe "UIANavigationBar" do 
+	it "#rightButton returns an instance of UIAButton" do
+		app = UIATarget.localTarget.frontMostApp
+		navBar = app.navigationBar
+		expect(navBar.rightButton.class).to eq(UIAButton)
+	end
+end 
+
+describe "UIAElement" do
+	it "sends a #tap to to the UIAutomation Server" do
+		pending "need to mock up API"
+	end
+end

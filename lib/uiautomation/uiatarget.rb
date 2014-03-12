@@ -12,6 +12,10 @@ class UIAApplication
 	def mainWindow
 		return UIAWindow.new 
 	end 
+
+	def navigationBar 
+		return UIANavigationBar.new 
+	end 
 end 
 
 class UIAWindow 
@@ -31,3 +35,18 @@ class UIATableView
 		return UIAElementArray.new
 	end 
 end 
+
+class UIANavigationBar
+	def rightButton
+		return UIAButton.new
+	end 
+end 
+
+class UIAElement
+	def tap
+	end 
+end 
+
+class UIAButton < UIAElement
+end 
+
