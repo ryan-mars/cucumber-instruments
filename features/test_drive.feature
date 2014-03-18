@@ -12,7 +12,7 @@ Feature: Test drive an iOS app
         Scenario: Touch it
         	Given I am on the main screen
       		When I touch the navigation bar button on the right    
-      		Then I should see that a new cell added to the table view
+      		Then I should see that a new cell was added to the table view
       """
     And I write to "features/step_definitions/right_nav_bar_button_steps.rb" with:
     	"""
@@ -24,7 +24,7 @@ Feature: Test drive an iOS app
     		UIATarget.localTarget.frontMostApp.navigationBar.rightButton.tap
     	end 
 
-    	Then(/^I should see that a new cell added to the table view$/) do
+    	Then(/^I should see that a new cell was added to the table view$/) do
   			expect(@cell_count + 1).to eq(UIATarget.localTarget.frontMostApp.mainWindow.tableViews[0].cells.count)
 			end
     	"""
