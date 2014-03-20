@@ -1,5 +1,6 @@
 class UIATarget 
 	def self.localTarget
+		Cucumber::Instruments::Server.start 
 		return UIATarget.new
 	end 
 

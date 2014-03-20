@@ -1,4 +1,4 @@
-@wip @announce
+@now
 Feature: Test drive an iOS app 
 	So that I can be sure we're building the right thing
 	As an iOS developer

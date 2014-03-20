@@ -9,6 +9,19 @@ describe "UIAutomation" do
 			expect(UIATarget.localTarget.class).to eq(UIATarget)
 		end
 
+		context "instruments is not running" do
+			it "#localTarget will start the server" do
+				expect(Cucumber::Instruments::Server.running?).to be_false
+				Cucumber::Instruments::Server.should_receive(:start)
+				sut = UIATarget.localTarget
+			end	
+		end
+
+		context "instruments is running" do 
+			pending
+			before { Cucumber::Instruments::Server.start } 
+		end 
+			
 		it "#frontMostApp returns an instance of UIAApplication" do 
 			target = UIATarget.localTarget
 			expect(target.frontMostApp.class).to eq(UIAApplication)
@@ -32,6 +45,19 @@ describe "UIAutomation" do
 
 		it "#tableViews returns a UIAElementArray of UIATableViews" do
 			expect(app.mainWindow.tableViews[0].class).to eq(UIATableView)
+		end
+
+		context "an app with one table view" do
+			it "#tableViews has a count of 1" do
+				expect(app.mainWindow.tableViews.count).to eq(1) 
+			end
+		end
+
+		context "an app with no table views" do
+			it "#tableViews has a count of 0" do
+				pending 
+				expect(app.mainWindow.tableViews.count).to eq(0) 
+			end
 		end
 	end 
 

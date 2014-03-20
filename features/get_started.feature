@@ -1,3 +1,4 @@
+@wip
 Feature: Get started 
 	So that I can begin test driving my iOS app with as little hassle as possible
 	As an iOS developer who enjoys BDD 	

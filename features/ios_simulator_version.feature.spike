@@ -1,3 +1,4 @@
+@wip
 Feature: iOS version in the simulator
 	So that I can easily test my iOS app in the relevant versions of iOS
 	As an iOS developer
