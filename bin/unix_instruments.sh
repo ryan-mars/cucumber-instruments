@@ -49,10 +49,10 @@ run_instruments() {
   LIB_PATH=$(cd `dirname $0`; pwd)
   XCODE_PATH=$(xcode-select --print-path)
 
+  output=$(mktemp -t unix-instruments)
+  
   DYLD_INSERT_LIBRARIES="$LIB_PATH/InstrumentsShim.dylib" \
   LIB_PATH=$LIB_PATH \
-  
-  output=$(mktemp -t unix-instruments)
   "$XCODE_PATH"/usr/bin/instruments "$@" &> /dev/ttyvf &
   pid_instruments=$!
 

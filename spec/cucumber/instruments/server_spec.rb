@@ -7,7 +7,7 @@ describe "Cucumber::Instruments::Server" do
 
 	context "running" do
 		before do
-			`killall -9 instruments`
+			#output = `killall -9 instruments`
 			Cucumber::Instruments::Server.start
 		end
 
