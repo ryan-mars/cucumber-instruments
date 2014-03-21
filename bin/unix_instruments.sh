@@ -46,8 +46,14 @@ run_instruments() {
   # I don't like this because I'm hard coding a tty/pty pair in here. Suggestions
   # to make this cleaner?
 
+  LIB_PATH=$(cd `dirname $0`; pwd)
+  XCODE_PATH=$(xcode-select --print-path)
+
+  DYLD_INSERT_LIBRARIES="$LIB_PATH/InstrumentsShim.dylib" \
+  LIB_PATH=$LIB_PATH \
+  
   output=$(mktemp -t unix-instruments)
-  instruments "$@" &> /dev/ttyvf &
+  "$XCODE_PATH"/usr/bin/instruments "$@" &> /dev/ttyvf &
   pid_instruments=$!
 
   # Cat the instruments output to tee which outputs to stdout and saves to
