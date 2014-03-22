@@ -16,11 +16,6 @@ describe "UIAutomation" do
 			end	
 		end
 
-		context "instruments is running" do 
-			pending
-			before { Cucumber::Instruments::Server.start } 
-		end 
-			
 		it "#frontMostApp returns an instance of UIAApplication" do 
 			target = UIATarget.localTarget
 			expect(target.frontMostApp.class).to eq(UIAApplication)
