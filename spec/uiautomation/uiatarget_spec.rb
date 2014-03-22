@@ -11,7 +11,6 @@ describe "UIAutomation" do
 
 		context "instruments is not running" do
 			it "#localTarget will start the server" do
-				expect(Cucumber::Instruments::Server.running?).to be_false
 				Cucumber::Instruments::Server.should_receive(:start)
 				sut = UIATarget.localTarget
 			end	

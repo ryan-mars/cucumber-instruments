@@ -32,7 +32,6 @@ module Cucumber
 
 			def self.cmd 
 				device_flag = '-w iPhone Retina (4-inch) - Simulator - iOS 7.1'
-				
 				path_to_automation_template = '/Applications/Xcode.app/Contents/Developer/../Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate'
 				app_dir = '/Users/ryan/code/cucumber-instruments/instruments-server/build/TestApp.app'
 				env_variables_for_cli = '-e UIASCRIPT /Users/ryan/code/cucumber-instruments/instruments-server/test.js' 
@@ -50,6 +49,13 @@ module Cucumber
 			end 
 
 			def self.stop
+				if @@process 
+					begin 
+					  @@process.poll_for_exit(0.3)
+					rescue ChildProcess::TimeoutError
+					  @@process.stop # tries increasingly harsher methods to kill the process.
+					end
+				end 
 				@@running = false
 			end 
 
