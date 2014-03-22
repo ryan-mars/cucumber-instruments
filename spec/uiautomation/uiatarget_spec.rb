@@ -70,8 +70,27 @@ describe "UIAutomation" do
 	end 
 
 	describe "UIAElement" do
-		it "sends a #tap to to the UIAutomation Server" do
-			pending "need to mock up API"
-		end
+		context "when the element exists" do 
+			context "#tap" do 
+				it "sends a tap to the server" do
+					pending "need to implement transport"
+				end 
+			end
+		end 
+
+		context "when the element does not exist" do 
+			it "is a UIAElementNil" do 
+				pending 
+			end 
+
+			it "is not valid" do 
+				pending 
+			end 
+
+			#left off here 
+			it "raises an error when tapped" do 
+				pending "figure out what the error should be"
+			end 
+		end 
 	end
 end 

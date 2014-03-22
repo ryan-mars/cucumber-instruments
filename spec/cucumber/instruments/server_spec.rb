@@ -1,4 +1,9 @@
 describe Cucumber::Instruments::Server do 
+	after(:all) do
+	  `killall -9 instruments`
+	end
+
+
 	subject { Cucumber::Instruments::Server }
 	
 	it { should respond_to(:start) }
