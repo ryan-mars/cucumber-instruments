@@ -1,9 +1,14 @@
 require 'cucumber/instruments/version'
-require 'cucumber/instruments/cucumber'
 require 'cucumber/instruments/server'
 
 module Cucumber
   module Instruments
-    # Your code goes here...
+    class << self
+      attr_accessor :app_bundle_path, :inherit_io
+
+      def configure 
+        yield self 
+      end 
+    end
   end
 end
