@@ -42,7 +42,7 @@ describe Cucumber::Instruments::Server do
 		it "instruments will be running" do
 			instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments'
 			pid = Cucumber::Instruments::Server.pid	
-			expect(`ps`).to match(/^#{pid}.+#{instruments_path}/)
+			expect(`ps`).to match(/.+#{pid}.+#{instruments_path}/)
 		end	
 
 		it "#stop stops instruments" do 
