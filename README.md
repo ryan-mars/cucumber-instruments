@@ -4,7 +4,13 @@ TODO: Write a gem description
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Install it
+
+    $ sudo gem install cucumber-instruments
+
+### Bundler 
+
+Alternatively if you're using Bundler you can add this line to your application's Gemfile:
 
     gem 'cucumber-instruments'
 
@@ -12,17 +18,13 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install cucumber-instruments
-
 ## Usage
 
 Generate a basic features directory
 
-    $ cucumber-instruments generate
+    $ cucumber-instruments get-started
 
-Update the path to your app bundle like so:
+If Cucumber-Instruments did not detect your application bundle then you'll need to update the path to your app bundle like so:
 
     # features/support/env.rb
     APP_BUNDLE = ~/path/to/your.app

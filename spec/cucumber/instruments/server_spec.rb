@@ -3,7 +3,6 @@ describe Cucumber::Instruments::Server do
 	  `killall -9 instruments`
 	end
 
-
 	subject { Cucumber::Instruments::Server }
 	
 	it { should respond_to(:start) }
@@ -42,7 +41,7 @@ describe Cucumber::Instruments::Server do
 		it "instruments will be running" do
 			instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments'
 			pid = Cucumber::Instruments::Server.pid	
-			expect(`ps`).to match(/.+#{pid}.+#{instruments_path}/)
+			expect(`ps`).to match(/^.?#{pid}.+#{instruments_path}/)
 		end	
 
 		it "#stop stops instruments" do 
@@ -50,7 +49,7 @@ describe Cucumber::Instruments::Server do
 			pid = Cucumber::Instruments::Server.pid	
 
 			Cucumber::Instruments::Server.stop 
-			expect(`ps`).not_to match(/^#{pid}.+#{instruments_path}/)
+			expect(`ps`).not_to match(/^.?#{pid}.+#{instruments_path}/)
 		end 
 	end
 
