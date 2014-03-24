@@ -1,8 +1,18 @@
-require 'spec_helper'
-
 describe "UIAutomation" do 
 
-	let(:app) { UIATarget.localTarget.frontMostApp }
+	let(:app) { UIATarget.localTarget.frontMostApp } 
+
+	before(:all) do
+	  ENV['APP_BUNDLE_PATH'] = File.expand_path("../fixtures/FixtureApp/Build/Products/Debug-iphonesimulator/FixtureApp.app",__dir__)
+	end
+
+	after(:each) do
+	  `killall -9 instruments`
+	end
+
+	after(:all) do
+		ENV['APP_BUNDLE_PATH'] = nil 
+	end 
 
 	describe "UIATarget" do
 		it "#localTarget returns an instance of UIATarget" do

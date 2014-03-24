@@ -1,5 +1,8 @@
-describe Cucumber::Instruments::Server do 
-	after(:all) do
+describe "Cucumber::Instruments::Server" do 
+
+	fixture_app_path = File.expand_path("../../fixtures/FixtureApp/Build/Products/Debug-iphonesimulator/FixtureApp.app", __dir__) 
+
+	after(:each) do
 	  `killall -9 instruments`
 	end
 
@@ -11,15 +14,31 @@ describe Cucumber::Instruments::Server do
 
 	it "does not leave zombies" do
 		`killall -9 instruments`
-		Cucumber::Instruments::Server.start 
+		Cucumber::Instruments::Server.start fixture_app_path
 		Cucumber::Instruments::Server.stop 
 		instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments'
 		expect(`ps`).to_not match(/#{instruments_path}/)
 	end
 
-	context "when running" do
+	context 'when started with no app bundle path' do
+		it "uses APP_BUNDLE_PATH from environment" do 
+			ENV['APP_BUNDLE_PATH'] = File.expand_path("../../fixtures/FixtureApp/Build/Products/Debug-iphonesimulator/FixtureApp.app",__dir__)
+			pending "prove that it fetches APP_BUNDLE_PATH from the environment instead"
+		end
+
+		context 'when APP_BUNDLE_PATH is not set' do
+			it "it raises an error" do 
+				ENV['APP_BUNDLE_PATH'] = nil
+				pending "need to figure out what error it should raise"
+			end 
+		end
+	end
+
+	context "when started with an app bundle path" do
+
 		before do
-			Cucumber::Instruments::Server.start
+			puts "fixture_app_path = #{fixture_app_path}"
+			Cucumber::Instruments::Server.start fixture_app_path
 		end
 
 		it "returns true for running?" do
@@ -44,16 +63,21 @@ describe Cucumber::Instruments::Server do
 			expect(`ps`).to match(/^.?#{pid}.+#{instruments_path}/)
 		end	
 
+		it "starts a .app in the simulator" do
+			pid = Cucumber::Instruments::Server.pid	
+			instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments' 
+			expect(`ps`).to match(/^.?#{pid}.+#{instruments_path}.+#{fixture_app_path}/)
+		end 
+
 		it "#stop stops instruments" do 
 			instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments'
 			pid = Cucumber::Instruments::Server.pid	
-
 			Cucumber::Instruments::Server.stop 
 			expect(`ps`).not_to match(/^.?#{pid}.+#{instruments_path}/)
 		end 
 	end
 
-	context "when not running" do
+	context "when not started" do
 		before do
 			Cucumber::Instruments::Server.stop
 			`killall -9 instruments`
