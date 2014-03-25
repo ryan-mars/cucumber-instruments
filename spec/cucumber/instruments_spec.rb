@@ -24,6 +24,12 @@ describe "Cucumber::Instruments" do
     #     #prepare to run the scenario more than once for each tag
     #   end
     # end 
+    # Around('@ios7','@ios6') do |scenario, block|
+    #   simulator = :ios7
+    #   block.call
+    #   simulator = :ios6
+    #   block.call
+    # end
   end 
 
 end 
