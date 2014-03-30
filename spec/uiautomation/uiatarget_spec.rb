@@ -7,7 +7,7 @@ describe "UIAutomation" do
 	end
 
 	after(:each) do
-	  `killall -9 instruments`
+	  `killall -9 instruments 2>&1`
 	end
 
 	after(:all) do

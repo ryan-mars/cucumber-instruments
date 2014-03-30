@@ -18,9 +18,9 @@ module Cucumber
 										"-w", "iPhone Retina (4-inch) - Simulator - iOS 7.1",
 				 						app_bundle_path,
 				 						"-e", "UIASCRIPT", 
-				 						"/Users/ryan/code/cucumber-instruments/instruments-server/test.js" )
+				 						"/Users/ryan/Code/cucumber-instruments/instruments-server/test.js" )
 				
-				lib_path = "/Users/ryan/Dropbox/Code/cucumber-instruments/cucumber-instruments/bin"
+				lib_path = "/Users/ryan/Code/cucumber-instruments/cucumber-instruments/bin"
 				@@process.environment["DYLD_INSERT_LIBRARIES"] = "#{lib_path}/InstrumentsShim.dylib"
 				@@process.environment["LIB_PATH"] = "#{lib_path}"
 				@@process.io.inherit!

@@ -5,12 +5,16 @@ Feature: Test drive an iOS app
   I want to write automated acceptance tests for my iOS app
 
   Background:
-      Given I have installed cucumber-instruments
+    Given I have installed cucumber-instruments
+    And I have an iOS project "FixtureApp"
     And I write to "features/right_nav_bar_button.feature" with:
       """
       Feature: Right nav bar button
+        Background: 
+          Given my project is freshly built 
+          And it is running in the simulator
+
         Scenario: Touch it
-          Given I am on the main screen
           When there are no cells in the table view
           And I touch the navigation bar button on the right
           Then I should see there is 1 cell in the table view
@@ -38,6 +42,14 @@ Feature: Test drive an iOS app
       """
       require 'cucumber/instruments'
       require 'uiautomation'
+
+      Cucumber::Instruments.configure do |config|
+        config.inherit_io = true
+        config.xcodebuild.xcodeproj = "FixtureApp.xcodeproj"
+        config.xcodebuild.scheme = "FixtureApp"
+        config.xcodebuild.sdk = "iphonesimulator"
+        config.xcodebuild.configuration = "Release"
+      end
       """
 
   Scenario: Red

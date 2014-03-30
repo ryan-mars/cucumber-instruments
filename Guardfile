@@ -2,17 +2,16 @@ guard :spork, :cucumber => false do
 	notification 'terminal_notifier'
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb') { :rspec }
-#  watch(%r{features/support/}) { :cucumber }
 end
 
-guard :rspec, cmd: 'bundle exec rspec --drb -f d', all_after_pass: true, all_on_start: true do
+guard :rspec, cmd: 'bundle exec rspec --drb --format progress', all_after_pass: true, all_on_start: true do
 	notification 'terminal_notifier'
 	watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
 end
 
-guard :cucumber, :cli => "--no-profile --tags ~@wip,@now --format 'progress'", :all_on_start => false do
+guard :cucumber, :cli => "--no-profile --tags ~@wip,@now --format progress", :all_on_start => false do
 	notification 'terminal_notifier'
   watch(%r{^features/.+\.feature$})
   watch(%r{^features/support/.+$})          { 'features' }

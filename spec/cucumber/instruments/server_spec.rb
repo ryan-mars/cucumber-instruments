@@ -2,7 +2,7 @@ describe "Cucumber::Instruments::Server" do
 		fixture_app_path = File.expand_path("../../fixtures/FixtureApp/Build/Products/Debug-iphonesimulator/FixtureApp.app", __dir__) 
 
 		after(:each) do
-		  `killall -9 instruments`
+		  `killall -9 instruments 2>&1`
 		end
 
 		subject { Cucumber::Instruments::Server }
@@ -12,7 +12,7 @@ describe "Cucumber::Instruments::Server" do
 		it { should respond_to(:running?) } 
 
 		it "does not leave zombies" do
-			`killall -9 instruments`
+			`killall -9 instruments 2>&1`
 			Cucumber::Instruments::Server.start fixture_app_path
 			Cucumber::Instruments::Server.stop 
 			instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments'
@@ -38,7 +38,6 @@ describe "Cucumber::Instruments::Server" do
 		context "when started with an app bundle path" do
 
 			before do
-				puts "fixture_app_path = #{fixture_app_path}"
 				Cucumber::Instruments::Server.start fixture_app_path
 			end
 
@@ -81,7 +80,7 @@ describe "Cucumber::Instruments::Server" do
 		context "when not started" do
 			before do
 				Cucumber::Instruments::Server.stop
-				`killall -9 instruments`
+				`killall -9 instruments 2>&1`
 			end
 
 			it "has a nil pid" do
