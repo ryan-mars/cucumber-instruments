@@ -19,13 +19,6 @@ describe "UIAutomation" do
 			expect(UIATarget.localTarget.class).to eq(UIATarget)
 		end
 
-		context "instruments is not running" do
-			it "#localTarget will start the server" do
-				Cucumber::Instruments::Server.should_receive(:start)
-				sut = UIATarget.localTarget
-			end	
-		end
-
 		it "#frontMostApp returns an instance of UIAApplication" do 
 			target = UIATarget.localTarget
 			expect(target.frontMostApp.class).to eq(UIAApplication)

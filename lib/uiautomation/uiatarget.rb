@@ -1,6 +1,5 @@
 class UIATarget 
 	def self.localTarget
-		Cucumber::Instruments::Server.start 
 		return UIATarget.new
 	end 
 
@@ -45,6 +44,7 @@ end
 
 class UIAElement
 	def tap
+
 	end 
 end 
 
