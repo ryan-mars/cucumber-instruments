@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe "UIAutomation" do 
 
 	let(:app) { UIATarget.localTarget.frontMostApp } 

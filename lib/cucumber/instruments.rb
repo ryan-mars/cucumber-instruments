@@ -1,5 +1,4 @@
 require 'cucumber/instruments/version'
-require 'cucumber/instruments/server'
 
 module Cucumber
   module Instruments
@@ -9,6 +8,20 @@ module Cucumber
       def configure 
         yield self 
       end 
+
+      def xcodebuild
+        @xcodebuild ||= XCodebuildConfig.new 
+      end
+
+      def start
+      end 
+
+      def running?
+      end 
     end
+
+    class XCodebuildConfig
+      attr_accessor :xcodeproj, :xcworkspace, :scheme, :sdk, :configuration
+    end 
   end
 end
