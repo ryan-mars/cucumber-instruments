@@ -3,7 +3,7 @@ def killall_instruments
 end 
 
 describe "Cucumber::Instruments::Server" do	
-		instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments'
+		instruments_path = `xcode-select -p`.chomp + '/usr/bin/instruments'
 		fixture_app_path = File.expand_path("../../fixtures/FixtureApp/Build/Products/Debug-iphonesimulator/FixtureApp.app", __dir__) 
 
 		before(:all) do 

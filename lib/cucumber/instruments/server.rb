@@ -12,17 +12,18 @@ module Cucumber
 				end 			
 
 				def start
-					@process = ChildProcess.build("/Applications/Xcode.app/Contents/Developer/usr/bin/instruments",
+					dylib_path = File.expand_path("../../../instruments", __dir__) 
+					xcode_path = `xcode-select -p`.chomp
+					@process = ChildProcess.build("#{xcode_path}/usr/bin/instruments",
 											"-t",
-											"/Applications/Xcode.app/Contents/Developer/../Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate",
+											"#{xcode_path}/../Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate",
 											"-w", "iPhone Retina (4-inch) - Simulator - iOS 7.1",
 					 						Cucumber::Instruments.app_bundle_path,
 					 						"-e", "UIASCRIPT", 
-					 						"/Users/ryan/Code/cucumber-instruments/instruments-server/test.js" )
+					 						"#{dylib_path}/cucumber-instrumets.js" )
 					
-					lib_path = "/Users/ryan/Code/cucumber-instruments/cucumber-instruments/bin"
-					@process.environment["DYLD_INSERT_LIBRARIES"] = "#{lib_path}/InstrumentsShim.dylib"
-					@process.environment["LIB_PATH"] = "#{lib_path}"
+					@process.environment["DYLD_INSERT_LIBRARIES"] = "#{dylib_path}/InstrumentsShim.dylib"
+					@process.environment["LIB_PATH"] = "#{dylib_path}"
 					@process.io.inherit!
 					@process.cwd = Dir.mktmpdir("cucumber-instruments",Dir.tmpdir)
 					@process.start 

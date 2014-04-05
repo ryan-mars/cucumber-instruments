@@ -33,5 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "guard-cucumber"            # Same
   spec.add_development_dependency "guard-spork"               # Same
   spec.add_development_dependency "terminal-notifier-guard"   # Same
-  spec.add_development_dependency "rspec-nc"                  # I don't recall
+  spec.add_development_dependency "rspec-nc"                  # RSpec notification center
 end
