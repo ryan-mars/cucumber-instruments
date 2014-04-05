@@ -3,8 +3,10 @@ require 'spec_helper'
 describe "Cucumber::Instruments" do
   subject { Cucumber::Instruments }
 
-  it { should respond_to(:start) }
-  it { should respond_to(:running?) } 
+  context 'uiautomation server' do
+    it { should respond_to(:start) }
+    it { should respond_to(:running?) } 
+  end
 
   context 'configuration' do
     it { should respond_to(:configure) }
@@ -44,23 +46,4 @@ describe "Cucumber::Instruments" do
     end # xcodebuild 
   end # configuration 
   
-  it "sets up the world" do 
-    pending "need to setup cucumber world object with our DSL"
-  end 
-
-  it "has a before hook that launches the correct simulator" do 
-    pending "not sure if we can re-run a scenario multiple times might have to use Background"
-    # Before do |scenario|
-    #   scenario.source_tag_names.each do |tag|
-    #     #prepare to run the scenario more than once for each tag
-    #   end
-    # end 
-    # Around('@ios7','@ios6') do |scenario, block|
-    #   simulator = :ios7
-    #   block.call
-    #   simulator = :ios6
-    #   block.call
-    # end
-  end 
-
 end 

@@ -1,4 +1,8 @@
-describe "Cucumber::Instruments::Server" do
+describe "Cucumber::Instruments::Server", :deprecated => true do
+		before(:each) do
+		  pending "refactoring this out into Cucumber::Instruments"
+		end
+			
 		fixture_app_path = File.expand_path("../../fixtures/FixtureApp/Build/Products/Debug-iphonesimulator/FixtureApp.app", __dir__) 
 
 		after(:each) do

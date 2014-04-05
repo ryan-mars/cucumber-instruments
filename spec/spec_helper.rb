@@ -12,6 +12,7 @@ Spork.prefork do
   # need to restart spork for it take effect.
   
 	RSpec.configure do |config|
+    config.filter_run_excluding :deprecated => true
 	  config.expect_with :rspec do |c|
 	    c.syntax = :expect
 	  end
