@@ -2,12 +2,7 @@ require 'spec_helper'
 
 describe "Cucumber::Instruments" do
   subject { Cucumber::Instruments }
-
-  context 'uiautomation server' do
-    it { should respond_to(:start) }
-    it { should respond_to(:running?) } 
-  end
-
+  
   context 'configuration' do
     it { should respond_to(:configure) }
     it { should respond_to(:inherit_io) }   

@@ -1,13 +1,21 @@
-describe "Cucumber::Instruments::Server", :deprecated => true do
-		before(:each) do
-		  pending "refactoring this out into Cucumber::Instruments"
-		end
-			
+def killall_instruments 
+	`killall -9 instruments 2>&1`
+end 
+
+describe "Cucumber::Instruments::Server" do	
+		instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments'
 		fixture_app_path = File.expand_path("../../fixtures/FixtureApp/Build/Products/Debug-iphonesimulator/FixtureApp.app", __dir__) 
 
-		after(:each) do
-		  `killall -9 instruments 2>&1`
-		end
+		before(:all) do 
+			Cucumber::Instruments.configure do |config|
+				config.inherit_io = true
+        config.app_bundle_path = fixture_app_path
+        config.xcodebuild.xcodeproj = "FixtureApp.xcodeproj"
+        config.xcodebuild.scheme = "FixtureApp"
+        config.xcodebuild.sdk = "iphonesimulator"
+        config.xcodebuild.configuration = "Release"
+      end
+		end 
 
 		subject { Cucumber::Instruments::Server }
 		
@@ -16,33 +24,15 @@ describe "Cucumber::Instruments::Server", :deprecated => true do
 		it { should respond_to(:running?) } 
 
 		it "does not leave zombies" do
-			`killall -9 instruments 2>&1`
-			Cucumber::Instruments::Server.start fixture_app_path
+			killall_instruments	#clean up to insure we don't false fail 
+			Cucumber::Instruments::Server.start 
 			Cucumber::Instruments::Server.stop 
-			instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments'
 			expect(`ps`).to_not match(/#{instruments_path}/)
 		end
 
-		context 'when started with no app bundle path' do
-			it "uses APP_BUNDLE_PATH from environment" do 
-				#pending "refactor to use Cucumber::Instruments.app_bundle_path"
-				ENV['APP_BUNDLE_PATH'] = File.expand_path("../../fixtures/FixtureApp/Build/Products/Debug-iphonesimulator/FixtureApp.app",__dir__)
-				pending "prove that it fetches APP_BUNDLE_PATH from the environment instead"
-			end
-
-			context 'when APP_BUNDLE_PATH is not set' do
-				it "it raises an error" do 
-					#pending "refactor to use Cucumber::Instruments.app_bundle_path"
-					ENV['APP_BUNDLE_PATH'] = nil
-					pending "need to figure out what error it should raise"
-				end 
-			end
-		end
-
 		context "when started with an app bundle path" do
-
-			before do
-				Cucumber::Instruments::Server.start fixture_app_path
+			before(:all) do
+				Cucumber::Instruments::Server.start 
 			end
 
 			it "returns true for running?" do
@@ -62,19 +52,16 @@ describe "Cucumber::Instruments::Server", :deprecated => true do
 			end 
 
 			it "instruments will be running" do
-				instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments'
 				pid = Cucumber::Instruments::Server.pid	
 				expect(`ps`).to match(/^.?#{pid}.+#{instruments_path}/)
 			end	
 
 			it "starts a .app in the simulator" do
 				pid = Cucumber::Instruments::Server.pid	
-				instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments' 
 				expect(`ps`).to match(/^.?#{pid}.+#{instruments_path}.+#{fixture_app_path}/)
 			end 
 
 			it "#stop stops instruments" do 
-				instruments_path = `xcode-select -p`.delete!("\n") + '/usr/bin/instruments'
 				pid = Cucumber::Instruments::Server.pid	
 				Cucumber::Instruments::Server.stop 
 				expect(`ps`).not_to match(/^.?#{pid}.+#{instruments_path}/)
@@ -82,9 +69,8 @@ describe "Cucumber::Instruments::Server", :deprecated => true do
 		end
 
 		context "when not started" do
-			before do
-				Cucumber::Instruments::Server.stop
-				`killall -9 instruments 2>&1`
+			before(:all) do
+				killall_instruments
 			end
 
 			it "has a nil pid" do

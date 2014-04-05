@@ -1,4 +1,5 @@
 require 'cucumber/instruments/version'
+require 'cucumber/instruments/server'
 
 module Cucumber
   module Instruments
@@ -14,9 +15,15 @@ module Cucumber
       end
 
       def start
+        Cucumber::Instruments::Server.start 
       end 
 
       def running?
+        Cucumber::Instruments::Server.running?
+      end 
+
+      def stop
+        Cucumber::Instruments::Server.stop 
       end 
     end
 

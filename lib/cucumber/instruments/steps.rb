@@ -1,3 +1,3 @@
 Given(/^I launch the app$/) do
-  Cucumber::Instruments.start 
+  Cucumber::Instruments::Server.start 
 end
