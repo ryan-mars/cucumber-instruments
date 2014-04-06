@@ -24,7 +24,7 @@ module Cucumber
 					
 					@process.environment["DYLD_INSERT_LIBRARIES"] = "#{dylib_path}/InstrumentsShim.dylib"
 					@process.environment["LIB_PATH"] = "#{dylib_path}"
-					@process.io.inherit!
+					@process.io.inherit! if Cucumber::Instruments.inherit_io
 					@process.cwd = Dir.mktmpdir("cucumber-instruments",Dir.tmpdir)
 					@process.start 
 				end 
