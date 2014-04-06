@@ -4,14 +4,6 @@ describe "UIAutomation" do
 
 	let(:app) { UIATarget.localTarget.frontMostApp } 
 
-	before(:all) do
-	  ENV['APP_BUNDLE_PATH'] = File.expand_path("../fixtures/FixtureApp/Build/Products/Debug-iphonesimulator/FixtureApp.app",__dir__)
-	end
-
-	after(:each) do
-	  `killall -9 instruments 2>&1`
-	end
-
 	after(:all) do
 		ENV['APP_BUNDLE_PATH'] = nil 
 	end 

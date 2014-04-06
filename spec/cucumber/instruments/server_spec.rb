@@ -1,6 +1,4 @@
-def killall_instruments 
-	`killall -9 instruments 2>&1`
-end 
+require 'spec_helper'
 
 describe "Cucumber::Instruments::Server" do	
 		instruments_path = `xcode-select -p`.chomp + '/usr/bin/instruments'
