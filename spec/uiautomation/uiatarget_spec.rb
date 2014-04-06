@@ -4,10 +4,6 @@ describe "UIAutomation" do
 
 	let(:app) { UIATarget.localTarget.frontMostApp } 
 
-	after(:all) do
-		ENV['APP_BUNDLE_PATH'] = nil 
-	end 
-
 	describe "UIATarget" do
 		it "#localTarget returns an instance of UIATarget" do
 			expect(UIATarget.localTarget.class).to eq(UIATarget)

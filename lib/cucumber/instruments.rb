@@ -4,10 +4,17 @@ require 'cucumber/instruments/server'
 module Cucumber
   module Instruments
     class << self
-      attr_accessor :inherit_io
-
       def configure 
         yield self 
+      end 
+
+      def inherit_io= should_inherit
+        puts "setting inherit_io to #{should_inherit}"
+        @inherit_io = should_inherit
+      end 
+
+      def inherit_io
+        @inherit_io ||= false 
       end 
 
       def xcodebuild
