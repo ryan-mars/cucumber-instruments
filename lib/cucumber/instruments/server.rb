@@ -20,7 +20,7 @@ module Cucumber
 											"-w", "iPhone Retina (4-inch) - Simulator - iOS 7.1",
 					 						Cucumber::Instruments.app_bundle_path,
 					 						"-e", "UIASCRIPT", 
-					 						"#{dylib_path}/cucumber-instrumets.js" )
+					 						"#{dylib_path}/cucumber-instruments.js" )
 					
 					@process.environment["DYLD_INSERT_LIBRARIES"] = "#{dylib_path}/InstrumentsShim.dylib"
 					@process.environment["LIB_PATH"] = "#{dylib_path}"

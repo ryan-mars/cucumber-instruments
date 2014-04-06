@@ -4,7 +4,7 @@ require 'cucumber/instruments/server'
 module Cucumber
   module Instruments
     class << self
-      attr_accessor :app_bundle_path, :inherit_io
+      attr_accessor :inherit_io
 
       def configure 
         yield self 
@@ -25,10 +25,34 @@ module Cucumber
       def stop
         Cucumber::Instruments::Server.stop 
       end 
+
+      def app_bundle_path 
+        if @app_bundle_path then 
+          return @app_bundle_path
+        else 
+          build_settings = Cucumber::Instruments.xcodebuild.settings 
+          return "#{build_settings["CONFIGURATION_BUILD_DIR"]}/#{build_settings["EXECUTABLE_FOLDER_PATH"]}"
+        end 
+      end 
+
+      def app_bundle_path= path 
+         @app_bundle_path = path 
+      end  
     end
 
     class XCodebuildConfig
-      attr_accessor :xcodeproj, :xcworkspace, :scheme, :sdk, :configuration
+      attr_accessor :xcodeproj, :xcworkspace, :scheme, :sdk, :configuration, :env
+
+      def settings
+        output = `xcodebuild -project #{Cucumber::Instruments.xcodebuild.xcodeproj} \
+                              -configuration #{Cucumber::Instruments.xcodebuild.configuration} \
+                              -scheme #{Cucumber::Instruments.xcodebuild.scheme} \
+                              -sdk #{Cucumber::Instruments.xcodebuild.sdk} \
+                              -showBuildSettings`
+        settings = {}
+        output.scan(/^\s{4}(\w+)\ =\ ?(.+$)?/) { |m| settings[m[0]]=m[1] } 
+        return settings 
+      end 
     end 
   end
 end

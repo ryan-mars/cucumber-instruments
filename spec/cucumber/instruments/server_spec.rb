@@ -4,13 +4,14 @@ end
 
 describe "Cucumber::Instruments::Server" do	
 		instruments_path = `xcode-select -p`.chomp + '/usr/bin/instruments'
-		fixture_app_path = File.expand_path("../../fixtures/FixtureApp/Build/Products/Debug-iphonesimulator/FixtureApp.app", __dir__) 
+		fixture_app_base_path = "../../fixtures/FixtureApp"
+		fixture_app_bundle_path = File.expand_path("#{fixture_app_base_path}/Build/Products/Release-iphonesimulator/FixtureApp.app", __dir__) 
 
 		before(:all) do 
 			Cucumber::Instruments.configure do |config|
 				config.inherit_io = true
-        config.app_bundle_path = fixture_app_path
-        config.xcodebuild.xcodeproj = "FixtureApp.xcodeproj"
+        config.app_bundle_path = fixture_app_bundle_path
+        config.xcodebuild.xcodeproj = File.expand_path("#{fixture_app_base_path}/FixtureApp.xcodeproj", __dir__) 
         config.xcodebuild.scheme = "FixtureApp"
         config.xcodebuild.sdk = "iphonesimulator"
         config.xcodebuild.configuration = "Release"
@@ -58,7 +59,7 @@ describe "Cucumber::Instruments::Server" do
 
 			it "starts a .app in the simulator" do
 				pid = Cucumber::Instruments::Server.pid	
-				expect(`ps`).to match(/^.?#{pid}.+#{instruments_path}.+#{fixture_app_path}/)
+				expect(`ps`).to match(/^.?#{pid}.+#{instruments_path}.+#{fixture_app_bundle_path}/)
 			end 
 
 			it "#stop stops instruments" do 
