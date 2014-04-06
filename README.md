@@ -24,10 +24,12 @@ Generate a basic features directory
 
     $ cucumber-instruments get-started
 
-If Cucumber-Instruments did not detect your application bundle then you'll need to update the path to your app bundle like so:
+If Cucumber-Instruments was unable to detect your application bundle then you'll need to update the path to your app bundle like so:
 
     # features/support/env.rb
-    APP_BUNDLE = ~/path/to/your.app
+    Cucumber::Instruments.configure do |config|
+      config.app_bundle_path = "~/path/to/your.app"
+    end
 
 Test drive your app
 
