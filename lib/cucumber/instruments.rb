@@ -1,5 +1,6 @@
 require 'cucumber/instruments/version'
 require 'cucumber/instruments/server'
+require 'cucumber/instruments/client'
 
 module Cucumber
   module Instruments

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "UIAutomation" do 
+describe "UIAutomation", :deprecated => true do 
 
 	let(:app) { UIATarget.localTarget.frontMostApp } 
 
