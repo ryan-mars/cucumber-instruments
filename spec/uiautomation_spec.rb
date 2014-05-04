@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-#UIATarget.localTarget.frontMostApp.mainWindow.tableViews[0].cells.count
-
 describe UIATarget do
   describe ".localTarget" do
     it "returns an instance of UIAChain" do

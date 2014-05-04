@@ -1,5 +1,3 @@
-#require 'uiautomation/uiatarget'
-
 class UIAChain
   def initialize messages = []
     @messages = messages
