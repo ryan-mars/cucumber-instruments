@@ -18,8 +18,12 @@ class UIAChain
   end
 
   def count
-    puts "FIXME: SEND TO SERVER #{@messages.join(".")};"
-  end 
+    
+  end
+
+  def tap
+    
+  end  
 
   def inspect 
     "#{@messages.join(".")};"

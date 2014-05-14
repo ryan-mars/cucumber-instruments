@@ -10,11 +10,6 @@ describe UIATarget do
       expect(UIATarget.localTarget.inspect).to eq("UIATarget.localTarget();")
     end 
   end
-
-  it "does not emit on the wrong functions" do 
-    pending 
-  end 
-
 end
 
 describe UIAChain do
@@ -44,17 +39,15 @@ describe UIAChain do
     expect(chain.inspect).to eq(javascript)
   end 
 
-  describe "#count" do
-    it "sends to the server" do
-      expect("this").to eq("that")
-    end
-  end
+  # describe "#count" do
+  #   it "returns the count from the server" do
+  #     sut = UIATarget.localTarget.frontMostApp.mainWindow.tableViews[0].cells
+  #     expect(sut.count).to eq(0)
+  #   end
+  # end
 
-  it "sends JavaScript commands to the server" do 
-    pending 
-  end 
+  # describe "void methods" do 
 
-  it "returns ruby objects from the server" do 
-    pending 
-  end 
+  # end 
+
 end
