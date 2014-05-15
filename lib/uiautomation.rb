@@ -1,3 +1,5 @@
+require 'cucumber/instruments/client'
+
 class UIAChain
   def initialize messages = []
     @messages = messages
@@ -18,15 +20,21 @@ class UIAChain
   end
 
   def count
-    
+    command = UIAChain.new @messages.dup << "length"
+    Cucumber::Instruments::Client.uia_execute(command.javascript).to_i 
   end
 
   def tap
-    
+    command = UIAChain.new @messages.dup << "tap()"
+    Cucumber::Instruments::Client.uia_execute(command.javascript) 
   end  
 
-  def inspect 
+  def javascript
     "#{@messages.join(".")};"
+  end 
+
+  def inspect 
+    return javascript
   end 
 end 
 

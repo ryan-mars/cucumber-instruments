@@ -22,16 +22,17 @@ Feature: Test drive an iOS app
     And I write to "features/step_definitions/right_nav_bar_button_steps.rb" with:
       """
       When /^there are no cells in the table view$/ do
-        @cell_count = UIATarget.localTarget.frontMostApp.mainWindow.tableViews[0].cells.count
-        expect(@cell_count).to eq(0)
+        cell_count = UIATarget.localTarget.frontMostApp.mainWindow.tableViews[0].cells.count
+        expect(cell_count).to eq(0)
       end 
 
       When /^I touch the navigation bar button on the right$/ do
         UIATarget.localTarget.frontMostApp.navigationBar.rightButton.tap
+        sleep 0.5
       end
 
       Then(/^I should see there is (\d+) cell in the table view$/) do |count|
-        expect(UIATarget.localTarget.frontMostApp.mainWindow.tableViews[0].cells.count).to eq(count)
+        expect(UIATarget.localTarget.frontMostApp.mainWindow.tableViews[0].cells.count).to eq(count.to_i)
       end
       """
 

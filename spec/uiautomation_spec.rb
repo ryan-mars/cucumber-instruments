@@ -39,15 +39,27 @@ describe UIAChain do
     expect(chain.inspect).to eq(javascript)
   end 
 
-  # describe "#count" do
-  #   it "returns the count from the server" do
-  #     sut = UIATarget.localTarget.frontMostApp.mainWindow.tableViews[0].cells
-  #     expect(sut.count).to eq(0)
-  #   end
-  # end
+  it "sends #tap to the server" do
+    window = UIATarget.localTarget.frontMostApp.mainWindow
+    window.navigationBar.rightButton.tap
+  end
 
-  # describe "void methods" do 
+  it "gets #count from the server" do
+    window = UIATarget.localTarget.frontMostApp.mainWindow
+    window.navigationBar.rightButton.tap
+    window.navigationBar.rightButton.tap
+    cells = window.tableViews[0].cells
+    expect(cells.count).to eq(2)  
+  end
 
-  # end 
-
+  context 'integrates with the HTTP client' do
+    it "does something" do
+      pending 
+      window = UIATarget.localTarget.frontMostApp.mainWindow
+      window.navigationBar.rightButton.tap
+      window.navigationBar.rightButton.tap
+      cells = window.tableViews[0].cells
+      expect(cells.count).to eq(3)  
+    end
+  end
 end
