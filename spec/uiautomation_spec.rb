@@ -40,11 +40,13 @@ describe UIAChain do
   end 
 
   it "sends #tap to the server" do
+    pending "need to isolate"
     window = UIATarget.localTarget.frontMostApp.mainWindow
     window.navigationBar.rightButton.tap
   end
 
   it "gets #count from the server" do
+    pending "need to isolate"
     window = UIATarget.localTarget.frontMostApp.mainWindow
     window.navigationBar.rightButton.tap
     window.navigationBar.rightButton.tap
