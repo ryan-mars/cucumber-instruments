@@ -37,20 +37,7 @@ Feature: Test drive an iOS app
 
   Scenario: Red
     Given I have an iOS project "BlankApp"
-    And I write to "features/support/env.rb" with:
-      """
-      require 'cucumber/instruments'
-      require 'cucumber/instruments/steps'
-      require 'uiautomation'
-
-      Cucumber::Instruments.configure do |config|
-        config.inherit_io = true
-        config.xcodebuild.xcodeproj = "BlankApp.xcodeproj"
-        config.xcodebuild.scheme = "BlankApp"
-        config.xcodebuild.sdk = "iphonesimulator"
-        config.xcodebuild.configuration = "Release"
-      end
-      """
+    And I have configured Cucumber-Instruments to test "BlankApp"
     When I run `bundle exec cucumber`
     Then it should fail with:
       """
@@ -60,20 +47,7 @@ Feature: Test drive an iOS app
 
   Scenario: Green
     Given I have an iOS project "FixtureApp"
-    And I write to "features/support/env.rb" with:
-      """
-      require 'cucumber/instruments'
-      require 'cucumber/instruments/steps'
-      require 'uiautomation'
-
-      Cucumber::Instruments.configure do |config|
-        config.inherit_io = true
-        config.xcodebuild.xcodeproj = "FixtureApp.xcodeproj"
-        config.xcodebuild.scheme = "FixtureApp"
-        config.xcodebuild.sdk = "iphonesimulator"
-        config.xcodebuild.configuration = "Release"
-      end
-      """
+    And I have configured Cucumber-Instruments to test "FixtureApp"
     When I run `bundle exec cucumber`
     Then it should pass with:
       """
