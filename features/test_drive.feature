@@ -1,4 +1,3 @@
-@now
 Feature: Test drive an iOS app
   So that I can be sure we're building the right thing
   As an iOS developer
@@ -24,7 +23,7 @@ Feature: Test drive an iOS app
       When /^there are no cells in the table view$/ do
         cell_count = UIATarget.localTarget.frontMostApp.mainWindow.tableViews[0].cells.count
         expect(cell_count).to eq(0)
-      end 
+      end
 
       When /^I touch the navigation bar button on the right$/ do
         UIATarget.localTarget.frontMostApp.navigationBar.rightButton.tap
@@ -53,13 +52,13 @@ Feature: Test drive an iOS app
       end
       """
     When I run `bundle exec cucumber`
-    Then it should fail with: 
+    Then it should fail with:
       """
       1 scenario (1 failed)
-      3 steps (1 failed, 1 skipped, 2 passed)
+      4 steps (1 failed, 3 passed)
       """
 
-  Scenario: Green 
+  Scenario: Green
     Given I have an iOS project "FixtureApp"
     And I write to "features/support/env.rb" with:
       """
@@ -75,9 +74,9 @@ Feature: Test drive an iOS app
         config.xcodebuild.configuration = "Release"
       end
       """
-    When I run `bundle exec cucumber` 
-    Then it should pass with: 
+    When I run `bundle exec cucumber`
+    Then it should pass with:
       """
-      1 scenario (1 pass)
-      4 steps (4 pass)
+      1 scenario (1 passed)
+      4 steps (4 passed)
       """

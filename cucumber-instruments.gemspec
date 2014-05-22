@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rspec-expectations"  # For your steps
   spec.add_dependency "childprocess"        # Managing instruments process
   spec.add_dependency "xcpretty"            # Clean build output
-  spec.add_dependency "faraday"            # HTTP
+  spec.add_dependency "faraday"             # HTTP
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
