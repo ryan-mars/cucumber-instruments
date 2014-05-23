@@ -4,7 +4,8 @@ module Cucumber
 module Instruments
   class Client 
     def self.uia_execute(javascript)
-      conn = Faraday.new(:url => 'http://localhost:8000')
+      url = 'http://localhost:8000'
+      conn = Faraday.new(:url => url)
 
       begin 
         response = conn.post do |req|
@@ -14,11 +15,17 @@ module Instruments
         end
       rescue Faraday::ConnectionFailed => e
         retries ||= 0
-        retries +=  1
-        if retries < 60
+        if retries < 30
+          if retries < 1
+            print "Waiting for #{url}"
+          else 
+            print "."  
+          end 
           sleep 0.5
+          retries +=  1
           retry
         else 
+          puts "TIMED OUT! 😧 "
           raise e
         end 
       end 
