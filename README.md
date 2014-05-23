@@ -1,6 +1,7 @@
 # Cucumber::Instruments
 
 TODO: Write a gem description
+[![Code Climate](https://codeclimate.com/github/cucumber-instruments/cucumber-instruments.png)](https://codeclimate.com/github/cucumber-instruments/cucumber-instruments)
 
 ## Installation
 
