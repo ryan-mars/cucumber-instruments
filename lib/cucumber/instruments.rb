@@ -10,7 +10,6 @@ module Cucumber
       end 
 
       def inherit_io= should_inherit
-        puts "setting inherit_io to #{should_inherit}"
         @inherit_io = should_inherit
       end 
 
