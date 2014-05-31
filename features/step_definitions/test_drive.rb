@@ -27,12 +27,16 @@ Given(/^I have configured Cucumber\-Instruments to test "(.*?)"$/) do |project_n
   require 'cucumber/instruments/steps'
   require 'uiautomation'
 
+  buildconfig = XcodebuildConfig.new
+  buildconfig.xcodeproj = "#{project_name}.xcodeproj"
+  buildconfig.scheme = "#{project_name}"
+  buildconfig.sdk = "iphonesimulator"
+  buildconfig.configuration = "Release"
+  app_bundle_path = Xcodebuild.new(buildconfig).app_bundle_path
+
   Cucumber::Instruments.configure do |config|
     config.inherit_io = true
-    config.xcodebuild.xcodeproj = "#{project_name}.xcodeproj"
-    config.xcodebuild.scheme = "#{project_name}"
-    config.xcodebuild.sdk = "iphonesimulator"
-    config.xcodebuild.configuration = "Release"
+    config.app_bundle_path = app_bundle_path
   end
   """
   }

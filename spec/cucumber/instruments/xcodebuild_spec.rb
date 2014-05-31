@@ -15,7 +15,7 @@ describe Xcodebuild do
   it { should respond_to(:build_settings) }
   it { should respond_to(:app_bundle_path) }
 
-  it "provides the path to our compiled app" do
+  it "tells us where xcode put the app bundle" do
     # FIXME: this should use a fixture file as the output from running xcodebuild -showBuildSettings
     relative_bundle_path = "../../fixtures/FixtureApp/Build/Products/Release-iphonesimulator/FixtureApp.app"
     proper_app_bundle_path = File.expand_path(relative_bundle_path,__dir__)
