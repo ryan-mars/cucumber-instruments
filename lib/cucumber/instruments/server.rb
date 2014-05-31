@@ -6,25 +6,26 @@ module Cucumber
 		class Server 
 			class << self 
 				@process = nil
+				attr_accessor :inherit_io
 
 				def running?
 					return @process.alive?
 				end 			
 
-				def start
+				def start(app_bundle_path)
 					dylib_path = File.expand_path("../../../instruments", __dir__) 
 					xcode_path = `xcode-select -p`.chomp
 					@process = ChildProcess.build("#{xcode_path}/usr/bin/instruments",
 											"-t",
 											"#{xcode_path}/../Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate",
 											"-w", "iPhone Retina (4-inch) - Simulator - iOS 7.1",
-					 						Cucumber::Instruments.app_bundle_path,
+					 						app_bundle_path,
 					 						"-e", "UIASCRIPT", 
 					 						"#{dylib_path}/cucumber-instruments.js" )
 					
 					@process.environment["DYLD_INSERT_LIBRARIES"] = "#{dylib_path}/InstrumentsShim.dylib"
 					@process.environment["LIB_PATH"] = "#{dylib_path}"
-					@process.io.inherit! if Cucumber::Instruments.inherit_io
+					@process.io.inherit! if inherit_io
 					@process.cwd = Dir.mktmpdir("cucumber-instruments",Dir.tmpdir)
 					@process.start 
 				end 

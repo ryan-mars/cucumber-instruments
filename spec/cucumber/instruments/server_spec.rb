@@ -5,33 +5,23 @@ describe "Cucumber::Instruments::Server" do
 		fixture_app_base_path = "../../fixtures/FixtureApp"
 		fixture_app_bundle_path = File.expand_path("#{fixture_app_base_path}/Build/Products/Release-iphonesimulator/FixtureApp.app", __dir__) 
 
-		before(:all) do 
-			Cucumber::Instruments.configure do |config|
-				config.inherit_io = true
-        config.app_bundle_path = fixture_app_bundle_path
-        config.xcodebuild.xcodeproj = File.expand_path("#{fixture_app_base_path}/FixtureApp.xcodeproj", __dir__) 
-        config.xcodebuild.scheme = "FixtureApp"
-        config.xcodebuild.sdk = "iphonesimulator"
-        config.xcodebuild.configuration = "Release"
-      end
-		end 
-
 		subject { Cucumber::Instruments::Server }
 		
 		it { should respond_to(:start) }
 		it { should respond_to(:stop) } 	
 		it { should respond_to(:running?) } 
+		it { should respond_to(:inherit_io) } 
 
 		it "does not leave zombies" do
 			killall_instruments	#clean up to insure we don't false fail 
-			Cucumber::Instruments::Server.start 
+			Cucumber::Instruments::Server.start(fixture_app_bundle_path) 
 			Cucumber::Instruments::Server.stop 
 			expect(`ps`).to_not match(/#{instruments_path}/)
 		end
 
-		context "when started with an app bundle path" do
+		context "when started" do
 			before(:all) do
-				Cucumber::Instruments::Server.start 
+				Cucumber::Instruments::Server.start(fixture_app_bundle_path) 
 			end
 
 			it "returns true for running?" do

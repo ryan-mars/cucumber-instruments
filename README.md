@@ -38,8 +38,21 @@ Test drive your app
 
 ## Contributing
 
+### Set up your development environment
+
+For the time being you'll have to change one Xcode setting for the tests to pass if you decide modify any of the fixtures. 
+    ![Set Xcode locations](http://i.imgur.com/SfwambO)
+
+### Run the tests 
+
+    $ bundle exec rspec
+    $ bundle exec cucumber
+
+### Hack
+
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+3. Write your code and tests (not necessarily in that order)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request
