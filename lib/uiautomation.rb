@@ -3,7 +3,7 @@ require 'cucumber/instruments/client'
 class UIAChain
   def initialize messages = []
     @messages = messages
-  end 
+  end
 
   def [] index
     last_array = @messages.size - 1
@@ -21,27 +21,27 @@ class UIAChain
 
   def count
     command = UIAChain.new @messages.dup << "length"
-    Cucumber::Instruments::Client.uia_execute(command.javascript).to_i 
+    Cucumber::Instruments::Client.uia_execute(command.javascript).to_i
   end
 
   def tap
     command = UIAChain.new @messages.dup << "tap()"
-    Cucumber::Instruments::Client.uia_execute(command.javascript) 
-  end  
+    Cucumber::Instruments::Client.uia_execute(command.javascript)
+  end
 
   def javascript
     "#{@messages.join(".")};"
-  end 
+  end
 
-  def inspect 
+  def inspect
     return javascript
-  end 
-end 
+  end
+end
 
 class UIATarget < UIAChain
-  class << self 
-    def localTarget 
+  class << self
+    def localTarget
       UIAChain.new ["UIATarget", "localTarget()"]
-    end 
-  end 
+    end
+  end
 end

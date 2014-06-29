@@ -4,7 +4,7 @@ guard :spork, :cucumber => false do
   watch('spec/spec_helper.rb')      { :rspec }
 end
 
-guard :rspec, cmd: 'bundle exec rspec --drb --format progress', all_after_pass: true, all_on_start: true do
+guard :rspec, cmd: 'bundle exec rspec --drb', all_after_pass: true, all_on_start: true do
   notification 'terminal_notifier'
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})         { |m| "spec/lib/#{m[1]}_spec.rb" }

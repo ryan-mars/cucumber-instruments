@@ -9,7 +9,7 @@ Install it
 
     $ sudo gem install cucumber-instruments
 
-### Bundler 
+### Bundler
 
 Alternatively if you're using Bundler you can add this line to your application's Gemfile:
 
@@ -40,10 +40,10 @@ Test drive your app
 
 ### Set up your development environment
 
-For the time being you'll have to change one Xcode setting for the tests to pass if you decide modify any of the fixtures. 
+For the time being you'll have to change one Xcode setting for the tests to pass if you decide modify any of the fixtures.
     ![Set Xcode locations](http://i.imgur.com/SfwambO)
 
-### Run the tests 
+### Run the tests
 
     $ bundle exec rspec
     $ bundle exec cucumber

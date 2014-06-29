@@ -1,13 +1,13 @@
-module CucumberInstrumentsHelper 
+module CucumberInstrumentsHelper
 	def install_cucumber_instruments
 		gem "cucumber-instruments", :path => "#{File.expand_path('.')}"
-	end 
+	end
 
 	def gem(name, options)
     line = %{gem "#{name}", #{options.inspect}\n}
     append_to_file('Gemfile', line)
   end
-end 
+end
 
 World(CucumberInstrumentsHelper)
 

@@ -2,48 +2,48 @@ require 'childprocess'
 require 'tmpdir'
 
 module Cucumber
-	module Instruments
-		class Server 
-			class << self 
-				@process = nil
-				attr_accessor :inherit_io
+  module Instruments
+    class Server
+      class << self
+        @process = nil
+        attr_accessor :inherit_io
 
-				def running?
-					return @process.alive?
-				end 			
+        def running?
+          return @process.alive?
+        end
 
-				def start(app_bundle_path)
-					dylib_path = File.expand_path("../../../instruments", __dir__) 
-					xcode_path = `xcode-select -p`.chomp
-					@process = ChildProcess.build("#{xcode_path}/usr/bin/instruments",
-											"-t",
-											"#{xcode_path}/../Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate",
-											"-w", "iPhone Retina (4-inch) - Simulator - iOS 7.1",
-					 						app_bundle_path,
-					 						"-e", "UIASCRIPT", 
-					 						"#{dylib_path}/cucumber-instruments.js" )
-					
-					@process.environment["DYLD_INSERT_LIBRARIES"] = "#{dylib_path}/InstrumentsShim.dylib"
-					@process.environment["LIB_PATH"] = "#{dylib_path}"
-					@process.io.inherit! if inherit_io
-					@process.cwd = Dir.mktmpdir("cucumber-instruments",Dir.tmpdir)
-					@process.start 
-				end 
+        def start(app_bundle_path)
+          dylib_path = File.expand_path("../../../instruments", __dir__)
+          xcode_path = `xcode-select -p`.chomp
+          @process = ChildProcess.build("#{xcode_path}/usr/bin/instruments",
+                      "-t",
+                      "#{xcode_path}/../Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate",
+                      "-w", "iPhone Retina (4-inch) - Simulator - iOS 7.1",
+                      app_bundle_path,
+                      "-e", "UIASCRIPT",
+                      "#{dylib_path}/cucumber-instruments.js" )
 
-				def pid
-					return @process.pid unless @process.exited?
-				end 
+          @process.environment["DYLD_INSERT_LIBRARIES"] = "#{dylib_path}/InstrumentsShim.dylib"
+          @process.environment["LIB_PATH"] = "#{dylib_path}"
+          @process.io.inherit! if inherit_io
+          @process.cwd = Dir.mktmpdir("cucumber-instruments",Dir.tmpdir)
+          @process.start
+        end
 
-				def stop
-					if @process 
-						begin 
-						  @process.poll_for_exit(0.3)
-						rescue ChildProcess::TimeoutError
-						  @process.stop # tries increasingly harsher methods to kill the process.
-						end
-					end 
-				end 
-			end
-		end
-	end
+        def pid
+          return @process.pid unless @process.exited?
+        end
+
+        def stop
+          if @process
+            begin
+              @process.poll_for_exit(0.3)
+            rescue ChildProcess::TimeoutError
+              @process.stop # tries increasingly harsher methods to kill the process.
+            end
+          end
+        end
+      end
+    end
+  end
 end

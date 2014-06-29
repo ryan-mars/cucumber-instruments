@@ -1,13 +1,12 @@
 require 'spec_helper'
 
-describe "Cucumber::Instruments" do
-  subject(:cucumber_instruments) { Cucumber::Instruments }
+module Cucumber
+  describe Instruments do
+    it { should respond_to(:configure) }
+    it { should respond_to(:launch) }
 
-  it { should respond_to(:configure) }
-  it { should respond_to(:inherit_io) }   
-  it { should respond_to(:app_bundle_path) }
-  
-  it "yields self with #configure" do
-    expect { |b| cucumber_instruments.configure(&b) }.to yield_control 
+    it "yields self with #configure" do
+      expect { |b| subject.configure(&b) }.to yield_control
+    end
   end
-end 
+end

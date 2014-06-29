@@ -1,4 +1,4 @@
-class Xcodebuild
+  class Xcodebuild
 
   def initialize(xcodebuildconfig)
     @xcodebuildconfig = xcodebuildconfig
