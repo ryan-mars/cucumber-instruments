@@ -13,7 +13,7 @@ Cucumber doesn't provide obvious beneft to most developers. I have found it to b
 ## Thanks
 Special thanks to [@fpotter](https://github.com/fpotter) for the original hack on Instruments which I repurposed for the driver.
 
-Many thanks to [@weyus](https://github.com/weyus) [@subdigital](https://github.com/subdigital) [@scottburton11](https://github.com/scottburton11) and [@rssvihla](https://github.com/rssvihla) for their valuable guidance.
+Many thanks to [@weyus](https://github.com/weyus) [@subdigital](https://github.com/subdigital) [@scottburton11](https://github.com/scottburton11) [@seanski](https://github.com/seanski) and [@rssvihla](https://github.com/rssvihla) for their valuable guidance.
 
 ## Vision
 
