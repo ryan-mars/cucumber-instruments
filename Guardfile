@@ -11,7 +11,7 @@ guard :rspec, cmd: 'bundle exec rspec --drb', all_after_pass: true, all_on_start
   watch('spec/spec_helper.rb')      { "spec" }
 end
 
-guard :cucumber, :cli => "--no-profile --tags ~@wip,@now --format progress", :all_on_start => false do
+guard :cucumber, :cli => "--no-profile --format progress", :all_on_start => false do
   notification 'terminal_notifier'
   watch(%r{^features/.+\.feature$})
   watch(%r{^features/support/.+$})  { 'features' }
