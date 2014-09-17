@@ -3,11 +3,13 @@
 
 This is a work in progress example of driving iOS apps with Cucumber. It leverages a novel driver implementation that can be found at https://github.com/cucumber-instruments/instruments-server
 
+To get an idea of what's going on have a look in the `features/` directory. It's a bit meta. In there you'll find a Cucumber feature which tests our idea, that is "create cucumber features for an iOS project and run them successfully". If you want to see what an actual project might look like, run cucumber as defined in the "For now" section of this readme and then take a look in the `tmp/aruba` directory. You can `bundle exec cucumber` in that directory and watch a project run first hand.
+
 ## Vision
 
 Ideally when it is finished you would be able to set up your iOS project for Cucumber automation with a mere 
     
-    sudo gem install cucumber-instruments
+    $ sudo gem install cucumber-instruments
 
 Generate a basic features directory
 
