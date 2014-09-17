@@ -10,9 +10,10 @@ I'm not a full time programmer anymore but I still love to code. I'm actually an
 
 Cucumber doesn't provide obvious beneft to most developers. I have found it to be an immensely valuable tool for communicating with stakeholders. Cucumber sets crystal clear expectations for what the software will do and then makes those expectations executable tests. This single tool has the potential to eliminate a considerable amount of heartache on software projects, and eliminating developer heartache is what I'm all about.
 
-### Special thanks
+## Thanks
 Special thanks to [@fpotter](https://github.com/fpotter) for the original hack on Instruments which I repurposed for the driver.
-Thanks to [@weyus](https://github.com/weyus) [@subdigital](https://github.com/subdigital) [@scottburton11](https://github.com/scottburton11) and [@rssvihla](https://github.com/rssvihla) for their valuable guidance.
+
+Many thanks to [@weyus](https://github.com/weyus) [@subdigital](https://github.com/subdigital) [@scottburton11](https://github.com/scottburton11) and [@rssvihla](https://github.com/rssvihla) for their valuable guidance.
 
 ## Vision
 
