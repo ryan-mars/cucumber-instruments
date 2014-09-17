@@ -1,42 +1,30 @@
 [![Code Climate](https://codeclimate.com/github/cucumber-instruments/cucumber-instruments.png)](https://codeclimate.com/github/cucumber-instruments/cucumber-instruments)
 # Cucumber::Instruments
 
-TODO: Write a gem description
+This is a work in progress example of driving iOS apps with Cucumber. It leverages a novel driver implementation that can be found at https://github.com/cucumber-instruments/instruments-server
 
-## Installation
+## Vision
 
-Install it
-
-    $ sudo gem install cucumber-instruments
-
-### Bundler
-
-Alternatively if you're using Bundler you can add this line to your application's Gemfile:
-
-    gem 'cucumber-instruments'
-
-And then execute:
-
-    $ bundle
-
-## Usage
+Ideally when it is finished you would be able to set up your iOS project for Cucumber automation with a mere 
+    
+    sudo gem install cucumber-instruments
 
 Generate a basic features directory
 
-    $ cucumber-instruments get-started
+    $ cucumber-instruments get-started    
 
-If Cucumber-Instruments was unable to detect your application bundle then you'll need to update the path to your app bundle like so:
+If Cucumber-Instruments was unable to detect your application bundle then you'd need to update the path to your app bundle like so:
 
     # features/support/env.rb
     Cucumber::Instruments.configure do |config|
       config.app_bundle_path = "~/path/to/your.app"
     end
 
-Test drive your app
+Then simply test drive (ATDD) your app
 
     $ cucumber
 
-## Contributing
+## For now
 
 ### Set up your development environment
 
