@@ -1,7 +1,7 @@
 [![Code Climate](https://codeclimate.com/github/cucumber-instruments/cucumber-instruments.png)](https://codeclimate.com/github/cucumber-instruments/cucumber-instruments)
 # Cucumber::Instruments
 
-This is a work in progress example of driving iOS apps with [Cucumber](http://cukes.info/). It leverages a novel driver implementation that can be found at [https://github.com/cucumber-instruments/instruments-server](https://codeclimate.com/github/cucumber-instruments/instruments-server)
+This is a work in progress example of driving iOS apps with [Cucumber](http://cukes.info/). It leverages a novel driver implementation that can be found at [https://github.com/cucumber-instruments/instruments-server](https://github.com/cucumber-instruments/instruments-server)
 
 To get an idea of what's going on have a look in the `features/` directory. It's a bit meta. In there you'll find a Cucumber feature which tests our idea, that is "create Cucumber features for an iOS project and run them successfully". If you want to see what how your project might look like if you were using it run Cucumber as defined in the "**For now**" section of this readme and then take a look in the `tmp/aruba` directory. You can `bundle exec cucumber` in that directory and watch a project run first hand.
 
